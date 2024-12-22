@@ -1,0 +1,41 @@
+﻿﻿
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدخال المعلومات</title>
+</head>
+<body>
+    <h1>إدخال المعلومات</h1>
+    <form id="infoForm">
+        <label for="name">الاسم:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="email">البريد الإلكتروني:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        <button type="button" onclick="saveData()">حفظ</button>
+    </form>
+    <script>
+        function saveData() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+
+            if (name && email) {
+                // استرجاع البيانات المخزنة مسبقاً أو إنشاء مصفوفة جديدة
+                let storedData = JSON.parse(localStorage.getItem("users")) || [];
+
+                // إضافة البيانات الجديدة
+                storedData.push({ name, email });
+
+                // تخزين البيانات المحدثة
+                localStorage.setItem("users", JSON.stringify(storedData));
+
+                // إعادة توجيه المستخدم إلى صفحة العرض
+
+            } else {
+                alert("يرجى تعبئة جميع الحقول");
+            }
+        }
+    </script>
+</body>
+</html>
